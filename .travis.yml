@@ -14,6 +14,9 @@ after_success:
   - docker build -t jason/multi-nginx ./nginx
   - docker build -t jason/multi-worker ./worker
   # login docker cli
-  
-
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push iamges to docker hub
+  - docker push jason/multi-client
+  - docker push jason/multi-server
+  - docker push jason/multi-nginx
+  - docker push jason/multi-worker
